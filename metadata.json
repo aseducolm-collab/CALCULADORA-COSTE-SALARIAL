@@ -1,0 +1,5 @@
+{
+  "name": "Calculadora de Coste Salarial Total",
+  "description": "Una aplicación para calcular el coste salarial total anual de un empleado para la empresa, incluyendo todos los costes directos e indirectos, con un enfoque en la legislación española.",
+  "requestFramePermissions": []
+}
