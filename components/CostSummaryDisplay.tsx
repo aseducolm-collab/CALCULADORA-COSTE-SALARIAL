@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { CostSummary, EmployeeData } from '../types';
 import Card from './ui/Card';
@@ -63,10 +62,13 @@ const CostSummaryDisplay: React.FC<CostSummaryDisplayProps> = ({ summary, employ
             <li className="flex justify-between font-semibold border-t pt-2 mt-2 text-green-700"><span>Salario Neto Anual (Estimado)</span> <span>{formatCurrency(netAnnualSalary)}</span></li>
           </ul>
 
-          <h4 className="font-semibold text-gray-800 mb-2 border-t pt-4">Resumen Mensual (en {numberOfPayments} pagas)</h4>
+          <h4 className="font-semibold text-gray-800 mb-2 border-t pt-4">Desglose Mensual (en {numberOfPayments} pagas)</h4>
             <ul className="space-y-3">
-                <li className="flex justify-between"><span>Salario Bruto Mensual</span> <span className="font-medium">{formatCurrency(monthlyGrossSalary)}</span></li>
-                <li className="flex justify-between font-semibold text-green-700"><span>Salario Neto Mensual (Estimado)</span> <span>{formatCurrency(monthlyNetSalary)}</span></li>
+              <li className="flex justify-between"><span>Salario Bruto Mensual</span> <span className="font-medium">{formatCurrency(monthlyGrossSalary)}</span></li>
+              <li className="flex justify-between text-sm text-gray-600 pl-4 border-l-2 border-red-200"><span>├ S.S. (Conting. + Desempleo + FP)</span> <span>- {formatCurrency((breakdown.employee.commonContingencies + breakdown.employee.unemployment + breakdown.employee.professionalTraining) / numberOfPayments)}</span></li>
+              <li className="flex justify-between text-sm text-gray-600 pl-4 border-l-2 border-red-200"><span>├ MEI (0.12%)</span> <span>- {formatCurrency(breakdown.employee.mei / numberOfPayments)}</span></li>
+              <li className="flex justify-between text-sm text-gray-600 pl-4 border-l-2 border-red-200"><span>└ IRPF (Estimado)</span> <span>- {formatCurrency(breakdown.employee.irpf / numberOfPayments)}</span></li>
+              <li className="flex justify-between font-semibold border-t pt-2 mt-2 text-green-700"><span>Salario Neto Mensual (Estimado)</span> <span>{formatCurrency(monthlyNetSalary)}</span></li>
             </ul>
 
           <p className="mt-4 text-xs text-gray-500 italic">La retención de IRPF es una estimación simplificada y no considera la situación personal (estado civil, hijos, etc.).</p>
